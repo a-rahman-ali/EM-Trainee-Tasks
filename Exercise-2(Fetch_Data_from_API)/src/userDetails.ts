@@ -1,57 +1,81 @@
-// userDetails.ts
+// // userDetails.ts
 
-interface UserDetail {
+type UserDetail =  {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
   avatar: string;
-}
+};
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const userDetailsContainer = document.getElementById('userDetails');
-  const backButton = document.getElementById('backButton'); // Assuming you have a button with the id 'backButton'
+class UserDetailsApp {
+  public userDetailsContainer: HTMLElement | null;
+  public backButton: HTMLElement | null;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get('userId');
+  constructor() {
+    this.userDetailsContainer = document.getElementById('userDetails');
+    this.backButton = document.getElementById('backButton');
 
-  if (userDetailsContainer && backButton && userId) {
+    if (this.userDetailsContainer && this.backButton) {
+      this.init();
+    } else {
+      console.error('Error: Unable to find HTML containers');
+    }
+  }
+
+  public async fetchUserDetails(userId: string): Promise<UserDetail> {
     try {
-      const userDetails = await fetchUserDetails(userId);
-      displayUserDetails(userDetails, userDetailsContainer);
+      const response = await fetch(`https://reqres.in/api/users/${userId}`);
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-      // Add click event listener to the back button
-      backButton.addEventListener('click', () => {
+  public displayUserDetails(user: UserDetail): void {
+    const userDetailsHTML = `
+      <div>
+        <h3>Welcome, ${user.first_name} ${user.last_name}!</h3>
+        <img src="${user.avatar}" alt="${user.first_name} ${user.last_name}">
+        <p>ID: ${user.id}</p>
+        <p>Name: ${user.first_name} ${user.last_name}</p>
+        <p>Email: ${user.email}</p>
+      </div>
+    `;
+
+    if (this.userDetailsContainer) {
+      this.userDetailsContainer.innerHTML = userDetailsHTML;
+    }
+  }
+
+  public init(): void {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+
+    if (userId) {
+      this.loadUserDetails(userId);
+    } else {
+      console.error('Error: userId not found in URL parameters');
+    }
+
+    if (this.backButton) {
+      this.backButton.addEventListener('click', () => {
         window.location.href = 'index.html';
       });
+    }
+  }
+
+  public async loadUserDetails(userId: string): Promise<void> {
+    try {
+      const userDetails = await this.fetchUserDetails(userId);
+      this.displayUserDetails(userDetails);
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
   }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new UserDetailsApp();
 });
-
-async function fetchUserDetails(userId: string): Promise<UserDetail> {
-  try {
-    const response = await fetch(`https://reqres.in/api/users/${userId}`);
-    const data = await response.json();
-    return data.data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-function displayUserDetails(user: UserDetail, container: HTMLElement) {
-  // Create HTML content for displaying user details
-  const userDetailsHTML = `
-    <div>
-      <h3>Welcome, ${user.first_name} ${user.last_name}!</h3>
-      <img src="${user.avatar}" alt="${user.first_name} ${user.last_name}">
-      <p>ID: ${user.id}</p>
-      <p>Name: ${user.first_name} ${user.last_name}</p>
-      <p>Email: ${user.email}</p>
-    </div>
-  `;
-
-  // Update the container's inner HTML with the user details
-  container.innerHTML = userDetailsHTML;
-}
