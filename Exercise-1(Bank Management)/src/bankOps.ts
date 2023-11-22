@@ -2,6 +2,7 @@ import promptSync from "prompt-sync";
 const prompt = promptSync();
 
 import { SavingsAccount, CurrentAccount, BankAccount } from "./accounts";
+import { start } from "./BankApp";
 
 let Bank: BankAccount[] = []; // Add your accounts here
 
@@ -18,8 +19,7 @@ export function createAccount():void {
       createCurrentAcc();
       break;
     default:
-      console.log("Please choose from Available options");
-      console.log();
+      console.log("Please choose from Available options\n");
       break;
   }
 }
@@ -35,14 +35,15 @@ export function createSavingsAcc(): void {
   let initialBalance: number = getBalanceFromUser("savings");
   let account = new SavingsAccount(userName, userAge, userLocation, userState, userCountry, userEmail, initialBalance);
   Bank.push(account);
-  console.log(`Account No. ${account.getAccountNumber()} for ${account.getUserName()}`);
-  console.log();
+  console.log(`Account No. ${account.accountNumber} for ${account.userName}\n`);
   // console.log(account);
 }
 // Function to Create Current Account  
 export function createCurrentAcc(): void {
-  let userName: string = prompt("Enter your Name: ");
-  let userAge: number = getAgeFromUser();
+  let userName: string = prompt("Enter your Name: ")
+  let tempAge: number = getAgeFromUser();
+  let userAge: number = tempAge;
+  // (tempAge != -1 ? tempAge : start());
   let userLocation: string = prompt("Enter your Location: ");
   let userState: string = prompt("Enter your State: ");
   let userCountry: string = prompt("Enter your Country: ");
@@ -50,8 +51,7 @@ export function createCurrentAcc(): void {
   let initialBalance: number = getBalanceFromUser("current");
   let account = new CurrentAccount(userName, userAge, userLocation, userState, userCountry, userEmail, initialBalance);
   Bank.push(account);
-  console.log(`Account No. ${account.getAccountNumber()} for ${account.getUserName()}`);
-  console.log();
+  console.log(`Account No. ${account.accountNumber} for ${account.userName}\n`);
   // console.log(account);
 }
 
@@ -62,14 +62,15 @@ function getAgeFromUser(): number {
   while(true) {
     age = parseInt(prompt("Enter your Age: "));
     if (isNaN(age)) {
-      console.log("Age must be a number. Please enter a valid age.");
+      console.log("Age must be a number. Please enter a valid age.\n");
     } else if (age < 18 || age > 68) {
       ageAttempts++;
-      console.log("Age must be above 18 and below 68");
+      console.log("Age must be above 18 and below 68.\n");
 
       if(ageAttempts >= 2){
-        console.log("You've exceeded the maximum number of attempts in entering age");
-        process.exit(0);
+        console.log("You've exceeded the maximum number of attempts in entering age.\n");
+        // process.exit(0);
+        return start();
       }
       continue;
     }else{
@@ -87,11 +88,12 @@ function getEmailFromUser(): string{
     email = prompt("Enter your Email: ");
     let emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if(!emailRegex.test(email)){
-      console.log("Enter email id in proper format");
+      console.log("Enter email id in proper format.\n");
       emailAttempts++;
       if(emailAttempts >= 2){
-        console.log("You've exceeded max no.of attempts in entering proper email")
-        process.exit(0);
+        console.log("You've exceeded max no.of attempts in entering proper email.\n")
+        // process.exit(0);
+        return start();
       }
       continue;
     }else{
@@ -108,21 +110,23 @@ function getBalanceFromUser(accType: string): number{
   while(true){
     balance = parseInt(prompt("Enter your Initial Balance: "));
     if (isNaN(balance) || (accType === "savings" && balance < 500)) {
-      console.log("Initial balance must be a number and not less than 500.");
+      console.log("Initial balance must be a number and not less than 500.\n");
       balanceAttempts++;
 
       if (balanceAttempts >= 2) {
-        console.log("You have exceeded the maximum number of attempts. Exiting application.");
-        process.exit(0);
+        console.log("You've exceeded the maximum number of attempts in entering Balance.\n");
+        // process.exit(0);
+        return start();
       }
       continue;
     } else if(isNaN(balance) || (accType === "current" && balance < 800)) {
-      console.log("Initial balance must be a number and not less than 800.");
+      console.log("Initial balance must be a number and not less than 800.\n");
       balanceAttempts++;
 
       if (balanceAttempts >= 2) {
-        console.log("You have exceeded the maximum number of attempts. Exiting application.");
-        process.exit(0);
+        console.log("You've exceeded the maximum number of attempts in entering Balance!\n");
+        // process.exit(0);
+        return start();
       }
       continue;
     }else{
@@ -138,9 +142,9 @@ function getBalanceFromUser(accType: string): number{
     let account = getAccountByNumber(accNo);
 
     if (account) {
-        console.log(`Account Number: ${accNo} --> Balance: ${account.getBalance()}`);
+        console.log(`Account Number: ${account.accountNumber} --> Balance: ${account.balance}\n`);
     } else {
-        console.log("Account not found");
+        console.log("Account not found\n");
     }
 }
 
@@ -152,40 +156,38 @@ export function viewCustomerDetails(): void {
   if (account) {
       console.log("Customer Details:");
       console.log("------------------------------------------------");
-      console.log(`| Account Number:   ${account.getAccountNumber()}`);
-      console.log(`| Customer Name:    ${account.getUserName()}`);
-      console.log(`| Age:              ${account.getUserAge()}`);
-      console.log(`| Location:         ${account.getUserLocation()}`);
-      console.log(`| State:            ${account.getUserState()}`);
-      console.log(`| Country:          ${account.getUserCountry()}`);
-      console.log(`| Email:            ${account.getUserEmail()}`);
-      console.log(`| Balance:          ${account.getBalance()}`);
+      console.log(`| Account Number:   ${account.accountNumber}`);
+      console.log(`| Customer Name:    ${account.userName}`);
+      console.log(`| Age:              ${account.userAge}`);
+      console.log(`| Location:         ${account.userLocation}`);
+      console.log(`| State:            ${account.userState}`);
+      console.log(`| Country:          ${account.userCountry}`);
+      console.log(`| Email:            ${account.userEmail}`);
+      console.log(`| Balance:          ${account.balance}`);
       console.log(`| Account Type:     ${account.getAccountType()}`);
-      console.log("------------------------------------------------");
+      console.log("------------------------------------------------\n");
   } else {
-      console.log("Account not found");
+      console.log("Account not found\n");
   }
 }
 
 // Function to display account holders details in tabluar format
 export function displayAllAccountsDetails(): void {
-  console.log("+------------------+-----------------+------------+-----------------+----------------------+-----------------+---------------------+----------------+----------------+");
-  console.log("| Account Number   | User Name       | User Age   | Location        | State                | Country         | Email               | Balance        | Account Type   |");
-  console.log("+------------------+-----------------+------------+-----------------+----------------------+-----------------+---------------------+----------------+----------------+");
-  for (const account of Bank) {
-    const accountNumber = account.getAccountNumber().padEnd(15, ' ');
-    const userName = account.getUserName().padEnd(15, ' ');
-    const userAge = account.getUserAge().toString().padEnd(10, ' ');
-    const userLocation = account.getUserLocation().padEnd(17, ' ');
-    const userState = account.getUserState().padEnd(17, ' ');
-    const userCountry = account.getUserCountry().padEnd(12, ' ');
-    const userEmail = account.getUserEmail().padEnd(20, ' ');
-    const balance = account.getBalance().toString().padEnd(15, ' ');
-    const accountType = account.getAccountType().padEnd(15, ' ');
-    
-    console.log(`| ${accountNumber} | ${userName} | ${userAge} | ${userLocation} | ${userState} | ${userCountry} | ${userEmail} | ${balance} | ${accountType} |`);
-  }
-  console.log("+------------------+-----------------+------------+-----------------+----------------------+-----------------+---------------------+----------------+----------------+");
+  // removed the approach to print using console.log();
+  const tableData = Bank.map(account => {
+    return {
+      'Account Number': account.accountNumber,
+      'User Name': account.userName,
+      'User Age': account.userAge,
+      'Location': account.userLocation,
+      'State': account.userState,
+      'Country': account.userCountry,
+      'Email': account.userEmail,
+      'Balance': account.balance,
+      'Account Type': account.getAccountType(),
+    };
+  });
+  console.table(tableData);
 }
 
 // Function to withdraw money
@@ -195,14 +197,16 @@ export function withdrawMoney(){
   if(account){
     let amount: number = (Number)(prompt("Enter the amount to withdraw: "));
     if (account.getAccountType() === "Current") {
-      (account as CurrentAccount).withdraw(amount);
+      account.withdraw(amount);
+      // (account as CurrentAccount).withdraw(amount);
     } else if (account.getAccountType() === "Savings") {
-      (account as SavingsAccount).withdraw(amount);
+      account.withdraw(amount);
+      // (account as SavingsAccount).withdraw(amount);
     } else {
-      console.log("Invalid account type.");
+      console.log("Invalid account type.\n");
     }
   } else {
-    console.log("Account not found");
+    console.log("Account not found\n");
   }
 }
 // Function to deposit money
@@ -216,19 +220,19 @@ export function depositMoney(){
     } else if (account.getAccountType() === "Savings") {
       (account as SavingsAccount).deposit(amount);
     } else {
-      console.log("Invalid account type.");
+      console.log("Invalid account type.\n");
     }
   } else {
-    console.log("Account not found");
+    console.log("Account not found. \n");
   }
 }
 
 // Function that helps to fetch presence of Account
 function getAccountByNumber(accountNumber: string): BankAccount | null {
   for (let account of Bank) {
-      if (account.getAccountNumber() === accountNumber) {
-          return account;
-      }
+    if (account.accountNumber.toLowerCase() === accountNumber.toLowerCase()) {
+        return account;
+    }
   }
   return null;
 }

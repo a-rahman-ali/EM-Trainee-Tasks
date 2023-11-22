@@ -3,7 +3,7 @@ const prompt = promptSync();
 
 import { createAccount, displayAllAccountsDetails, viewCustomerDetails, withdrawMoney, depositMoney } from "./bankOps";
 import{ viewBalance } from "./bankOps";
-function start() {
+export function start(): never {
   console.log("Welcome to My Banking Application!!");
 
   while(true){
@@ -40,8 +40,7 @@ function start() {
         console.log("Thanks for using my Application");
         process.exit(0);
       default:
-        console.log("Please choose a valid option");
-        console.log();
+        console.log("Please choose a valid option\n");
         // break;
     }
   }
