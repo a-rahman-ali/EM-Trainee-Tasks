@@ -1,12 +1,12 @@
-import { Book } from "./book";
+import { Book } from "./BookCls";
 
-export interface User {
+export interface IUser {
     userId: number;
     name: string;
     checkedOutBooks: Book[];
 }
 
-export interface Admin {
+export interface IAdmin {
     addBook(title: string, author: string, bookId: number): void;
     removeBook(bookId: number): void;
 }

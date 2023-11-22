@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LibrarySystem = void 0;
-const book_1 = require("./book");
+const BookCls_1 = require("./BookCls");
 class LibrarySystem {
     constructor() {
         this.books = [];
@@ -15,7 +15,7 @@ class LibrarySystem {
             console.log(`Quantity of '${existingBook.title}' by ${existingBook.author} increased to ${existingBook.quantity}.`);
         }
         else {
-            const newBook = new book_1.Book(title, author, bookId);
+            const newBook = new BookCls_1.Book(title, author, bookId);
             this.books.push(newBook);
             console.log(`Book '${title}' by ${author} added to the library.`);
         }
@@ -59,7 +59,7 @@ class LibrarySystem {
                     existingBook.quantity++;
                 }
             });
-            // console.log(uniqueBooks);
+            // console.log(uniqueBooks);    
             // Convert uniqueBooks array to table format
             const tableData = uniqueBooks.map(({ book }) => ({
                 Title: book.title,
@@ -90,6 +90,7 @@ class LibrarySystem {
             console.log("No matching books found.");
         }
     }
+    // try reducing the complexty
     issueBook(user, bookTitle) {
         // Check if the user already exists
         const existingUser = this.users.find(existingUser => existingUser.userId === user.userId);
@@ -141,6 +142,31 @@ class LibrarySystem {
         else {
             console.log(`User with ID '${userId}' not found.`);
         }
+    }
+    displayAllUsers() {
+        console.log();
+        this.users.forEach(user => {
+            console.log(`${user.name}, you have ${user.checkedOutBooks.length} book(s) checked out.`);
+        });
+        const usersData = this.users.map((user) => {
+            const booksTakenByAuthors = {};
+            user.checkedOutBooks.forEach((book) => {
+                if (!booksTakenByAuthors[book.author]) {
+                    booksTakenByAuthors[book.author] = book.title;
+                }
+                else {
+                    booksTakenByAuthors[book.author] += `, ${book.title}`;
+                }
+            });
+            const booksTakenString = Object.values(booksTakenByAuthors).join(', ');
+            return {
+                'User ID': user.userId,
+                'Name': user.name,
+                'Books Taken': booksTakenString || 'None',
+            };
+        });
+        console.log("\nUser-wise Books Taken:");
+        console.table(usersData);
     }
 }
 exports.LibrarySystem = LibrarySystem;

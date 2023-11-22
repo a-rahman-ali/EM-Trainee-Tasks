@@ -1,14 +1,14 @@
-import { Book } from "./book";
-import { Library } from "./ILibrary";
-import { Admin, User } from "./IUserType";
+import { Book } from "./BookCls";
+import { ILibrary } from "./ILibrary";
+import { IAdmin, IUser } from "./IUserType";
+import { getBookTitle } from './menuAndOps';
 
-export class LibrarySystem implements Library, Admin {
-    books: Book[] = [];
-    users: User[] = [];
-    booksIssuedToUser: { [key: number]: number } = {}; // Dictionary to keep track of books issued to each user
+export class LibrarySystem implements ILibrary, IAdmin {
+    public books: Book[] = [];
+    public users: IUser[] = [];
+    public booksIssuedToUser: { [key: number]: number } = {}; // Dictionary to keep track of books issued to each user
 
-
-    addBook(title: string, author: string, bookId: number): void {
+    public addBook(title: string, author: string, bookId: number): void {
         const existingBook = this.books.find(book => book.bookId === bookId);
 
         if (existingBook) {
@@ -21,7 +21,7 @@ export class LibrarySystem implements Library, Admin {
         }
     }
 
-    removeBook(bookId: number): void {
+    public removeBook(bookId: number): void {
         const book = this.books.find(book => book.bookId === bookId);
     
         if (book) {
@@ -40,8 +40,7 @@ export class LibrarySystem implements Library, Admin {
         }
     }
     
-
-    listBooks(): void {
+    public listBooks(): void {
         if (this.books.length === 0) {
             console.log("No books available in the library.");
         } else {
@@ -63,8 +62,7 @@ export class LibrarySystem implements Library, Admin {
                 }
             });
 
-            // console.log(uniqueBooks);
-    
+            // console.log(uniqueBooks);    
             // Convert uniqueBooks array to table format
             const tableData = uniqueBooks.map(({book}) => ({
                 Title: book.title,
@@ -78,7 +76,7 @@ export class LibrarySystem implements Library, Admin {
         }
     }
     
-    searchBooks(query: string): void {
+    public searchBooks(query: string): void {
         const results = this.books.filter(
             book => book.title.toLowerCase().includes(query.toLowerCase()) ||
                     book.author.toLowerCase().includes(query.toLowerCase()) ||
@@ -100,8 +98,9 @@ export class LibrarySystem implements Library, Admin {
             console.log("No matching books found.");
         }
     }
-
-    issueBook(user: User, bookTitle: string): void {
+    
+    // try reducing the complexty
+    public issueBook(user: IUser, bookTitle: string): void {
         // Check if the user already exists
         const existingUser = this.users.find(existingUser => existingUser.userId === user.userId);
     
@@ -135,7 +134,7 @@ export class LibrarySystem implements Library, Admin {
         }
     }
     
-    returnBook(userId: number, bookTitle: string): void {
+    public returnBook(userId: number, bookTitle: string): void {
         const returningUser = this.users.find(user => user.userId === userId);
     
         if (returningUser) {
@@ -155,6 +154,35 @@ export class LibrarySystem implements Library, Admin {
             console.log(`User with ID '${userId}' not found.`);
         }
     }
-    
 
+    public displayAllUsers(){
+        console.log();
+        this.users.forEach(user => {
+            console.log(`${user.name}, you have ${user.checkedOutBooks.length} book(s) checked out.`);
+        });
+
+        const usersData = this.users.map((user) => {
+            const booksTakenByAuthors: { [author: string]: string } = {};
+    
+            user.checkedOutBooks.forEach((book) => {
+                if (!booksTakenByAuthors[book.author]) {
+                    booksTakenByAuthors[book.author] = book.title;
+                } else {
+                    booksTakenByAuthors[book.author] += `, ${book.title}`;
+                }
+            });
+    
+            const booksTakenString = Object.values(booksTakenByAuthors).join(', ');
+    
+            return {
+                'User ID': user.userId,
+                'Name': user.name,
+                'Books Taken': booksTakenString || 'None',
+            };
+        });
+    
+        console.log("\nUser-wise Books Taken:");
+        console.table(usersData);
+    }
+    
 }
