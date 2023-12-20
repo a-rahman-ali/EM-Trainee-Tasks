@@ -1,0 +1,20 @@
+<div class="coverpage" [ngStyle]="{paddingTop: '20px'}">
+    <div [ngStyle]="{height: '70px', width: '600px', borderRadius: '20px', backgroundColor: 'black', marginLeft: '33%', paddingTop: '10px'}">
+        <h2>Welcome To My Movie Voting Site</h2>
+    </div>
+    <div [ngClass]="{'container': true}">
+        <div *ngFor="let movie of movies">
+            <div [ngClass]="{'movie-card': true}" [ngStyle]="movie.isVoted ? {border: '2px dotted rgb(245, 197, 24)'} : {border: '2px dotted rgb(0, 0, 0)'}">
+                <h4>{{movie.title}}</h4>
+                <img alt="" src="{{movie.poster}}" class="poster">
+                <button (click)="onVote(movie)" [ngStyle]="movie.isVoted ? {backgroundColor: 'rgba(0, 0, 0, 0.6)', color: 'white'} :  {backgroundColor: 'rgb(245, 197, 24)', color: 'black'}">
+                    {{!movie.isVoted ? 'Vote' : 'Unvote'}} 
+                    <!-- uncomment the following line if you want to disable the Unvote feature in above line, also comment in component.ts file -->
+                    <!-- {{!movie.isVoted? 'Vote' : 'Vote'}} -->
+                </button>
+                <!-- comment the below line if you want to disable Unvote button, also comment in movie-voting-index.component.ts file too-->
+                <p *ngIf="movie.isVoted" [ngStyle]="{fontSize: '30px', marginTop: '10px', color: 'white'}">Voted!!</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,3 @@
 # This is another project inside the workspace
-/ToDoListV1
+# /ToDoListV1
+.angular/cache/
