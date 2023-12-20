@@ -1,0 +1,13 @@
+<div class="heading">
+  <h1>My Routing Task Application</h1>
+</div>
+<div>
+  <!-- <app-home></app-home> -->
+  <ul>
+    <button [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="">Home</a></button>
+    <button [routerLinkActive]="'active'"><a [routerLink]="'/researchdept'">Research Department</a></button>
+    <button [routerLinkActive]="'active'"><a [routerLink]="'/business'">Business</a></button>
+    <button [routerLinkActive]="'active'"><a [routerLink]="'/technology'">Technology</a></button>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
