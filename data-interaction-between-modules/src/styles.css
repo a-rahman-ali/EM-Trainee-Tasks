@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-decoration-break: none;
+}
+li{
+    box-decoration-break: none;
+}
+button{
+    margin-left: 38%;
+    background-color: black;
+    color: white;
+    width: 130px;
+    padding: 10px;
+    border: none;
+}
+div{
+    margin-left: 30%;
+    margin-top: 10px;
+    width: 500px;
+    padding: 20px;
+    border: 2px dashed black;
+}

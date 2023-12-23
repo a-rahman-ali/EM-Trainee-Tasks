@@ -1,0 +1,15 @@
+<div style="background-color: aliceblue;">
+    <ul>
+        <h2>Orders</h2>
+    </ul>
+    <ul>
+        <li *ngFor="let item of orderData">
+            {{item.product}}
+            {{item.price | currency: 'INR'}}
+        </li>
+    </ul>
+    <!-- <p>{{orderData | json}}</p> -->
+    
+    <button (click)="transferOrderData()" [routerLink]="['/payment-comp']" routerLinkActive="router-link-active"  >Proceed to Pay</button>
+</div>
+<router-outlet></router-outlet>

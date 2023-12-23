@@ -1,0 +1,13 @@
+
+<div *ngIf="orderData" style="background-color: rgb(194, 249, 194);">
+    <ul>
+        <h2>Payment Portal</h2>
+    </ul>
+    <ul>
+        <li *ngFor="let item of orderData">
+            Product : {{item.product}} <br>
+            Price : {{ item.price | currency : 'INR'}}
+        </li>
+    </ul>
+    <button [routerLink]="['/orders']">Back To Orders</button>
+</div>
