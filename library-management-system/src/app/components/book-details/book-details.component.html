@@ -1,0 +1,20 @@
+<!-- <p>book-details works!</p> -->
+<div class="book-details-card">
+  <mat-card>
+    <img class="bg-secondary" mat-card-image [src]="book.image" alt="{{ book.title }}">
+    <mat-card-content>
+      <button mat-icon-button class="close-button" (click)="closeDialog()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h3 class="bg-dark text-white p-3 text-center"><strong>{{ book.title }}</strong></h3> <hr>
+      <ul>
+        <li><strong>Book ID: </strong> {{ book.id }}</li>
+        <li><strong>Description: </strong> {{ book.description }}</li>
+        <li><strong>Author: </strong> {{ book.author }}</li>
+        <li><strong>ISBN: </strong> {{ book.isbn13 }}</li>
+        <li><strong>Book Category: </strong> {{ book.category }}</li>
+        <li><strong>Book Count: </strong> {{ book.book_count }}</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>

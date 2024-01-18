@@ -1,0 +1,51 @@
+<div class="container">
+    <h2 class="mt-4 mb-4">Search the Books</h2>
+    <div *ngIf="!searchQuery">
+        <p>Please start entering a search query to find books.</p>
+    </div>
+    <mat-form-field appearance="outline" color="accent" style="width: 500px;">
+        <input matInput placeholder="Search books" [(ngModel)]="searchQuery" (input)="searchBooks()" (focus)="onFocus()"
+            (blur)="onBlur()">
+        <button mat-icon-button matSuffix *ngIf="!isInputFocused" (click)="searchBooks()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button matSuffix *ngIf="isInputFocused" (click)="clearSearch()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <mat-card *ngIf="searchQuery">
+        <mat-card-content>Matching results : {{booksToShow.length}} </mat-card-content>
+    </mat-card>
+
+    <div *ngIf="searchQuery && booksToShow.length > 0; else noBooksToShow" class="mt-4">
+        <div *ngFor="let book of booksToShow" class="book-card">
+            <li>
+                <strong>Title:</strong> {{ book.title }} - <strong>Category:</strong> {{ book.category }} - <strong>Count:</strong>{{ book.book_count }}
+            </li>
+        </div>
+    </div>
+    <ng-template #noBooksToShow>
+        <p>No books match the search criteria.</p>
+    </ng-template>
+</div>
+<hr>
+<mat-accordion class="mb-4">
+    <mat-expansion-panel *ngFor="let category of categories">
+        <mat-expansion-panel-header>
+            {{ category }} -- ({{ booksInCategoryOne(category).length }} books)
+        </mat-expansion-panel-header>
+        <div *ngIf="booksInCategoryOne(category).length > 0; else noBooksInCategory">
+            <div *ngFor="let book of booksInCategoryOne(category)" class="book-card">
+                <li>
+                    <strong>Title :</strong> {{ book.title }}
+                    - <strong>Author :</strong> {{ book.author }}
+                    - <strong>Count:</strong>{{ book.book_count }}
+                </li>
+            </div>
+        </div>
+        <ng-template #noBooksInCategory>
+            <p>No books available in the selected category.</p>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

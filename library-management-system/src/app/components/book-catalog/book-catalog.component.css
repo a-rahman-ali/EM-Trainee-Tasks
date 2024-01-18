@@ -1,0 +1,42 @@
+.book-catalog-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-card {
+  width: 200px;
+  margin: 20px;
+}
+
+.custom-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-card img {
+  background-color: darkgray;
+}
+
+.custom-card h3 {
+  color: red;
+}
+
+.card-footer {
+  margin-top: auto; 
+  padding: 10px; 
+  text-align: center;
+}
+
+.borrow-limit-snackbar {
+  position: fixed;
+  width: 100%;
+  top: 64px; 
+  z-index: 1000; 
+  background-color: #ff5252;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

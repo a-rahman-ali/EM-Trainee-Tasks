@@ -1,0 +1,31 @@
+.example-card {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.example-card mat-form-field {
+  width: 100%;
+}
+
+.example-card mat-card-content{
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.example-card button {
+  margin-top: 5px;
+}
+
+.success-msg{
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  margin-left: 17%;
+  margin-top: 5px;
+}
+.register{
+  margin-left: 37%;
+  margin-bottom: 2%;
+  padding-top: 0;
+}

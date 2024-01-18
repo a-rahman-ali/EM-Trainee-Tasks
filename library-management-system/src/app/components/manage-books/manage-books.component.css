@@ -1,0 +1,42 @@
+.book-card {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+mat-card-actions{
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+  display: flex;
+}
+
+.books-list {
+  flex: 4;
+  margin-right: 20px;
+}
+
+.edit-form {
+  flex: 2;
+}
+
+.center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reload-icon {
+  margin-left: 10px; /* Adjust the spacing between the text and the icon */
+}

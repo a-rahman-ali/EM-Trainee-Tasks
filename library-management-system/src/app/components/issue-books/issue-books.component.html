@@ -1,0 +1,41 @@
+<div class="mat-elevation-z8">
+  <h2 class="text-center">Issue Books</h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Username </th>
+      <td mat-cell *matCellDef="let borrow" class="text-center"> {{ borrow.username }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> User ID </th>
+      <td mat-cell *matCellDef="let borrow" class="text-center"> {{ borrow.userId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookId">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Book ID </th>
+      <td mat-cell *matCellDef="let borrow" class="text-center"> {{ borrow.bookId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookName">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Book Name </th>
+      <td mat-cell *matCellDef="let borrow" class="text-center"> {{ borrow.bookName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approve/reject">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Approve/Reject </th>
+      <td mat-cell *matCellDef="let borrow" class="text-center">
+        <!-- <button mat-button color="primary" (click)="myClick(borrow)"> -->
+        <button mat-button color="primary" (click)="issueBook(borrow.userId, borrow.bookId)">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-button color="warn" (click)="cancelIssue(borrow.userId, borrow.bookId)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

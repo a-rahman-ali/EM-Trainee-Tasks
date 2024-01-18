@@ -1,0 +1,35 @@
+.example-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.example-card mat-form-field {
+  width: 100%;
+}
+
+.example-card button {
+  margin-top: 10px;
+}
+
+.switch-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.signup-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 20px;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  color: white;
+  margin-top: 20px;
+  margin-left: 37%;
+}

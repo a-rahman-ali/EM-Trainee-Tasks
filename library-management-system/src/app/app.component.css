@@ -1,0 +1,42 @@
+.heading{
+    width: 500px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    /* margin-left: 35%; */
+}
+
+mat-toolbar button {
+  margin-right: 10px;
+  border: none;
+}
+mat-toolbar button.active-link {
+  background-color: rgb(169, 169, 169);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100vw;
+}
+
+.content {
+  border: 4px solid black;
+  padding: 15px;
+  margin-top: 15px;
+  flex: 1;
+}
+
+.footer {
+  margin-top: 40px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #495057;
+}
+
+.borrow-limit-snackbar {
+  background-color: #dc3545; /* Red color */
+  color: #fff; /* White text */
+}

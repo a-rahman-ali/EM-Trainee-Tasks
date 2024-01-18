@@ -1,0 +1,49 @@
+<div *ngIf="loginError" class="error-message btn btn-danger p-2">
+  Incorrect email or password. Please try again.
+</div>
+<button *ngIf="adminLoginMessage" mat-raised-button color="primary" class="error-message">
+  Trying to Login as User? Switch to User
+</button>
+<button *ngIf="emailNotRegistered" mat-raised-button color="primary" class="error-message">
+  Email Not Registered, please signup & login
+</button>
+
+<mat-card class="example-card" *ngIf="!authService.isAuthenticatedAdmin()">
+  <mat-card-header>
+    <mat-card-title>Admin Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email" formControlName="email" required>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Invalid email format
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Passsword</mat-label>
+        <input matInput  [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" required>
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('pattern')">
+          Password must be at least 8 characters with one uppercase, one lowercase, one special character, and one numeric character
+        </mat-error>
+      </mat-form-field>
+      <mat-card-actions class="button-container">
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </mat-card-actions>
+    </form>
+    <div class="switch-button">
+      <button class="btn btn-success" (click)="switchToUser()">Switch to User</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+

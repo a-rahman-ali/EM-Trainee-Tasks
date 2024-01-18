@@ -1,0 +1,312 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "User1",
+      "password": "User@123",
+      "firstName": "User",
+      "lastName": "One",
+      "email": "user1@emi.com",
+      "role": "user",
+      "borrowedBooks": [],
+      "pendingBorrows": [
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "username": "Admin",
+      "password": "Admin@123",
+      "firstName": "Admin",
+      "lastName": "One",
+      "email": "admin1@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "username": "Bhargav",
+      "password": "User@123",
+      "firstName": "Bhargav",
+      "lastName": "Verma",
+      "email": "bhargav2@gmail.com",
+      "role": "user",
+      "borrowedBooks": [],
+      "pendingBorrows": []
+    },
+    {
+      "id": 4,
+      "username": "Sundar",
+      "password": "User@123",
+      "firstName": "Sundar",
+      "lastName": "Raj",
+      "email": "sundar@gmail.com",
+      "role": "user",
+      "borrowedBooks": [],
+      "pendingBorrows": []
+    },
+    {
+      "id": 5,
+      "username": "User2",
+      "password": "User@123",
+      "firstName": "User",
+      "lastName": "Two",
+      "email": "user2@emi.com",
+      "role": "user",
+      "borrowedBooks": [],
+      "pendingBorrows": []
+    },
+    {
+      "id": 6,
+      "username": "Manoj23",
+      "password": "User@123",
+      "firstName": "Manoj",
+      "lastName": "Kumar",
+      "email": "manoj@gmail.com",
+      "role": "user",
+      "borrowedBooks": [],
+      "pendingBorrows": []
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "An Introduction to C & GUI Programming, 2nd Edition",
+      "description": "A comprehensive guide to C and GUI programming. Learn the basics and advanced techniques.",
+      "isbn13": "9781912047451",
+      "book_count": 17,
+      "image": "https://itbook.store/img/books/9781912047451.png",
+      "author": "Simon Long",
+      "category": "Programming"
+    },
+    {
+      "id": 2,
+      "title": "Snowflake: The Definitive Guide",
+      "description": "Explore the architecture, design, and deployment on the Snowflake Data Cloud.",
+      "isbn13": "9781098103828",
+      "book_count": 15,
+      "image": "https://itbook.store/img/books/9781098103828.png",
+      "author": "Joyce Kay Avila",
+      "category": "Data Science"
+    },
+    {
+      "id": 3,
+      "title": "Python for Data Analysis, 3rd Edition",
+      "description": "Data wrangling with pandas, NumPy, and Jupyter. Essential tools for working with data.",
+      "isbn13": "9781098104030",
+      "book_count": 15,
+      "image": "https://itbook.store/img/books/9781098104030.png",
+      "author": "Wes McKinney",
+      "category": "Data Science"
+    },
+    {
+      "id": 4,
+      "title": "Reliable Machine Learning",
+      "description": "Applying SRE principles to machine learning in production. Ensure reliability in ML systems.",
+      "isbn13": "9781098106225",
+      "book_count": 12,
+      "image": "https://itbook.store/img/books/9781098106225.png",
+      "author": "Cathy Chan",
+      "category": "Machine Learning"
+    },
+    {
+      "id": 5,
+      "title": "Data Visualization with Python and JavaScript, 2nd Edition",
+      "description": "Scrape, clean, explore, and transform your data. Master data visualization techniques.",
+      "isbn13": "9781098111878",
+      "book_count": 9,
+      "image": "https://itbook.store/img/books/9781098111878.png",
+      "author": "Kyran Dale",
+      "category": "Data Science"
+    },
+    {
+      "id": 6,
+      "title": "Learning Microsoft Power BI",
+      "description": "Transforming data into insights with Microsoft Power BI. A practical guide for analysts.",
+      "isbn13": "9781098112844",
+      "book_count": 24,
+      "image": "https://itbook.store/img/books/9781098112844.png",
+      "author": "Jeremy Arnold",
+      "category": "Data Science"
+    },
+    {
+      "id": 7,
+      "title": "C++ Software Design",
+      "description": "Design principles and patterns for high-quality software in C++. Master the art of software design.",
+      "isbn13": "9781098113162",
+      "book_count": 16,
+      "image": "https://itbook.store/img/books/9781098113162.png",
+      "author": "Klaus Iglberger",
+      "category": "Programming"
+    },
+    {
+      "id": 8,
+      "title": "Terraform: Up and Running, 3rd Edition",
+      "description": "Writing infrastructure as code with Terraform. Learn best practices for infrastructure automation.",
+      "isbn13": "9781098116743",
+      "book_count": 29,
+      "image": "https://itbook.store/img/books/9781098116743.png",
+      "author": "Yevgeniy Brikman",
+      "category": "DevOps"
+    },
+    {
+      "id": 9,
+      "title": "Flutter and Dart Cookbook",
+      "description": "Developing full-stack applications for the cloud with Flutter and Dart. Hands-on recipes.",
+      "isbn13": "9781098119515",
+      "book_count": 22,
+      "image": "https://itbook.store/img/books/9781098119515.png",
+      "author": "Richard Rose",
+      "category": "Mobile Development"
+    },
+    {
+      "id": 10,
+      "title": "Python Data Science Handbook, 2nd Edition",
+      "description": "Essential tools for working with data in Python. A comprehensive guide for data scientists.",
+      "isbn13": "9781098121228",
+      "book_count": 17,
+      "image": "https://itbook.store/img/books/9781098121228.png",
+      "author": "Joke VanderPlas",
+      "category": "Data Science"
+    },
+    {
+      "id": 11,
+      "title": "Raspberry Pi Cookbook, 4th Edition",
+      "description": "Software and hardware problems and solutions for Raspberry Pi enthusiasts.",
+      "isbn13": "9781098130923",
+      "book_count": 14,
+      "image": "https://itbook.store/img/books/9781098130923.png",
+      "author": "Simon Monk",
+      "category": "Hardware"
+    },
+    {
+      "id": 12,
+      "title": "Azure Maps Using Blazor Succinctly",
+      "description": "Unlock the power of Azure Maps with Blazor. A concise guide for developers.",
+      "isbn13": "9781642002263",
+      "book_count": 15,
+      "image": "https://itbook.store/img/books/9781642002263.png",
+      "author": "Michael Washington",
+      "category": "Web Development"
+    },
+    {
+      "id": 13,
+      "title": "Full Stack Quarkus and React",
+      "description": "Hands-on full-stack web development with Java, React, and Kubernetes. Build scalable applications.",
+      "isbn13": "9781800562738",
+      "book_count": 23,
+      "image": "https://itbook.store/img/books/9781800562738.png",
+      "author": "Marc Muri Sam Felix",
+      "category": "Web Development"
+    },
+    {
+      "id": 14,
+      "title": "Mathematics for Game Programming and Computer Graphics",
+      "description": "Explore the essential mathematics for creating, rendering, and manipulating 3D virtual environments.",
+      "isbn13": "9781801077330",
+      "book_count": 19,
+      "image": "https://itbook.store/img/books/9781801077330.png",
+      "author": "Penny De Byl",
+      "category": "Game Development"
+    },
+    {
+      "id": 15,
+      "title": "Architecting and Building High-Speed SoCs",
+      "description": "Design, develop, and debug complex FPGA-based systems-on-chip. A comprehensive guide.",
+      "isbn13": "9781801810999",
+      "book_count": 16,
+      "image": "https://itbook.store/img/books/9781801810999.png",
+      "author": "Mounir Marref",
+      "category": "Hardware"
+    },
+    {
+      "id": 16,
+      "title": "Web Development with Julia and Genie",
+      "description": "A hands-on guide to high-performance server-side web development with the Julia programming language.",
+      "isbn13": "9781801811132",
+      "book_count": 11,
+      "image": "https://itbook.store/img/books/9781801811132.png",
+      "author": "Ivo & Adrian",
+      "category": "Web Development"
+    },
+    {
+      "id": 17,
+      "title": "Java Memory Management",
+      "description": "A comprehensive guide to garbage collection and JVM tuning. Optimize Java memory usage.",
+      "isbn13": "9781801812856",
+      "book_count": 18,
+      "image": "https://itbook.store/img/books/9781801812856.png",
+      "author": "Putten & Kennedy",
+      "category": "Java"
+    },
+    {
+      "id": 18,
+      "title": "Test-Driven Development with C++",
+      "description": "A simple guide to writing bug-free Agile code. Master TDD principles with C++.",
+      "isbn13": "9781803242002",
+      "book_count": 13,
+      "image": "https://itbook.store/img/books/9781803242002.png",
+      "author": "Abdul Wahid Tanner",
+      "category": "Programming"
+    },
+    {
+      "id": 19,
+      "title": "Software Test Design",
+      "description": "Write comprehensive test plans to uncover critical bugs in web, desktop, and mobile apps. A practical guide.",
+      "isbn13": "9781804612569",
+      "book_count": 17,
+      "image": "https://itbook.store/img/books/9781804612569.png",
+      "author": "Simon Amey",
+      "category": "Quality Assurance"
+    },
+    {
+      "id": 20,
+      "title": "Microservices with Go",
+      "description": "Building scalable and reliable microservices with Go. Implement microservices architecture.",
+      "isbn13": "9781804617007",
+      "book_count": 28,
+      "image": "https://itbook.store/img/books/9781804617007.png",
+      "author": "Alexander Shuiskov",
+      "category": "Microservices"
+    },
+    {
+      "id": 504,
+      "title": "Securing DevOps",
+      "description": "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps team's highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your cloud ...",
+      "isbn13": "9781617294136",
+      "book_count": 10,
+      "image": "https://itbook.store/img/books/9781617294136.png",
+      "author": "Julien Vehent",
+      "category": "DevOps"
+    },
+    {
+      "id": 582,
+      "title": "Devops",
+      "description": "This is a test book",
+      "isbn13": "9876543210987",
+      "book_count": 16,
+      "image": "https://itbook.store/img/books/9781617294136.png",
+      "author": "Guest Author",
+      "category": "DevOps"
+    },
+    {
+      "id": 46,
+      "title": "DevOps",
+      "description": "This is a book related to DevOps",
+      "isbn13": "9876543210987",
+      "book_count": 13,
+      "image": "https://itbook.store/img/books/9781491985571.png",
+      "author": "Devops Author",
+      "category": "DevOps"
+    },
+    {
+      "id": 181,
+      "title": "Let us C",
+      "description": "This is the beginners guide to learn C",
+      "isbn13": "9876543219076",
+      "book_count": 5,
+      "image": "https://itbook.store/img/books/9781098104030.png",
+      "author": "Yashwanth",
+      "category": "Programming"
+    }
+  ]
+}

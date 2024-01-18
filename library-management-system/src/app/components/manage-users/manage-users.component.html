@@ -1,0 +1,38 @@
+<!-- <p>manage-users works!</p> -->
+<div class="mat-elevation-z8">
+  <h2 class="text-center">Registered Users</h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> ID </th>
+      <td mat-cell *matCellDef="let user" class="text-center"> {{ user.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Username </th>
+      <td mat-cell *matCellDef="let user" class="text-center"> {{ user.username }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Email </th>
+      <td mat-cell *matCellDef="let user" class="text-center"> {{ user.email }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="borrowedBooksCount">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Borrowed Books Count </th>
+      <td mat-cell *matCellDef="let user" class="text-center"> {{ user.borrowedBooks.length }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete Users</th>
+        <td mat-cell *matCellDef="let user">
+            <button mat-icon-button color="primary" (click)="onDeleteUser(user)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

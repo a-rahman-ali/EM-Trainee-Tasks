@@ -1,0 +1,18 @@
+<div class="book-catalog-container">
+  <div *ngFor="let book of books" class="book-card">
+    <mat-card class="custom-card">
+      <img mat-card-image [src]="book.image" alt="{{ book.title }}" (click)="openBookDetailDialog(book)">
+      <div>
+          <mat-card-content>
+            <h3>{{ book.title }}</h3>
+            <p *ngIf="authService.isAuthenticatedAdmin()" class="text-center">Book Count: {{ book.book_count }}</p>
+          </mat-card-content>
+      </div>
+      <div class="card-footer" *ngIf="authService.isAuthenticatedUser()">
+        <button mat-button color="primary" [disabled]="isBookPending(book.id) || isBookBorrowed(book.id)" (click)="borrowClick(book)">
+          {{ isBookPending(book.id) ? 'Pending' : (isBookBorrowed(book.id) ? 'Borrowed' : 'Borrow') }}
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

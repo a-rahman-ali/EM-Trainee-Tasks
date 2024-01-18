@@ -1,0 +1,53 @@
+<div>
+  <h1 class="rounded-3 bg bg-dark text-white text-center m-1 p-4 fw-5"
+    style="font-size: 40px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;">
+    Library Management System
+  </h1>
+</div>
+<div *ngIf="authService.isAuthenticatedUser() || authService.isAuthenticatedAdmin()">
+  <mat-toolbar>
+    <button mat-button [routerLink]="['/book-catalog']" routerLinkActive="active-link" >
+      <mat-icon>library_books</mat-icon>
+      Books Catalog
+    </button>
+    <button mat-button [routerLink]="['/search-n-categorize']" routerLinkActive="active-link" >
+      <mat-icon>search</mat-icon>
+      Search & Categorize
+    </button>
+    <button *ngIf="authService.isAuthenticatedUser()" mat-button [routerLink]="['/my-books']" routerLinkActive="active-link" >
+      <mat-icon>collections_bookmark</mat-icon>
+      My Books
+    </button>
+    <button *ngIf="authService.isAuthenticatedAdmin()" mat-button [routerLink]="['/issue-books']" routerLinkActive="active-link">
+      <mat-icon>assignment</mat-icon>
+      Issue Books
+    </button>
+    <button *ngIf="authService.isAuthenticatedAdmin()" mat-button [routerLink]="['/manage-books']" routerLinkActive="active-link" >
+      <mat-icon>library_add</mat-icon>
+      Manage Books
+    </button>
+    <button *ngIf="authService.isAuthenticatedAdmin()" mat-button [routerLink]="['/manage-users']" routerLinkActive="active-link" >
+      <mat-icon>people</mat-icon>
+      Manage Users
+    </button>
+    
+
+    <span style="flex: 1 1 auto;"></span>
+    <span>
+      Welcome, {{ authService.getCurrentUser()?.firstName + ' ' + authService.getCurrentUser()?.lastName}}
+    </span>
+    <button *ngIf="authService.isAuthenticatedUser() || authService.isAuthenticatedAdmin()" class="btn btn-danger ms-2 me-2" (click)="openLogoutConfirmationDialog()">
+      Logout
+      <span class="bi bi-box-arrow-right"></span>
+    </button>
+  </mat-toolbar> 
+</div>
+<div class="container">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  
+  <div class="footer">
+    Designed and Developed by Abdul Rahman
+  </div>
+</div>
